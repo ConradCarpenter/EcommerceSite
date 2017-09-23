@@ -1,0 +1,21 @@
+﻿@model List<Item>
+@{
+    ViewData["Title"] = "Item Page";
+}
+<h1>@ViewBag.message</h1>
+
+@if(Model.Count == 0)
+{
+    <h2>Sorry no Items are available</h2>
+
+}
+
+@foreach (var item in Model)
+{
+    <ul>
+        <li><h2>@Html.ActionLink(item.ItemName, "Item", "ItemPage", new {itemN = item.ItemNumber })</h2></li>
+        <li>Price = @item.Price</li>
+        <li><img src="@item.ImagURL" alt="Image" /></li>
+    </ul>
+
+}

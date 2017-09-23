@@ -1,0 +1,8 @@
+@model Item
+@{
+    ViewData["Title"] = Model.ItemName;
+}
+
+<h2>@Model.ItemName only $@Model.Price</h2>
+<img src="@Model.ImagURL" alt="Image" />
+<p>@Model.Desc</p>
