@@ -1,9 +1,0 @@
-C:\Users\Conrad\Documents\csc535\EcommerceSite\EcommerceSite\bin\Debug\netcoreapp1.1\EcommerceSite.deps.json
-C:\Users\Conrad\Documents\csc535\EcommerceSite\EcommerceSite\bin\Debug\netcoreapp1.1\EcommerceSite.runtimeconfig.json
-C:\Users\Conrad\Documents\csc535\EcommerceSite\EcommerceSite\bin\Debug\netcoreapp1.1\EcommerceSite.runtimeconfig.dev.json
-C:\Users\Conrad\Documents\csc535\EcommerceSite\EcommerceSite\bin\Debug\netcoreapp1.1\EcommerceSite.dll
-C:\Users\Conrad\Documents\csc535\EcommerceSite\EcommerceSite\bin\Debug\netcoreapp1.1\EcommerceSite.pdb
-C:\Users\Conrad\Documents\csc535\EcommerceSite\EcommerceSite\obj\Debug\netcoreapp1.1\EcommerceSite.csprojResolveAssemblyReference.cache
-C:\Users\Conrad\Documents\csc535\EcommerceSite\EcommerceSite\obj\Debug\netcoreapp1.1\EcommerceSite.AssemblyInfo.cs
-C:\Users\Conrad\Documents\csc535\EcommerceSite\EcommerceSite\obj\Debug\netcoreapp1.1\EcommerceSite.dll
-C:\Users\Conrad\Documents\csc535\EcommerceSite\EcommerceSite\obj\Debug\netcoreapp1.1\EcommerceSite.pdb
