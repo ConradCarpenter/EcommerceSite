@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+header {
+    background-image: url("banner.png");
+	background-repeat: no-repeat;
+	background-position: left;
+    clear: left;
+    text-align: center;
+	Height: 250px;
+	Width: 100%;
+}
+
+footer {
+    padding-top: 50px;
+	color: black;
+    clear: left;
+    text-align: center;
+	font-family: "arial", "sans-serif";
+}
+body {
+	font-family: "arial";
+}
+
+ul {
+    list-style-type: none;
+	font-family: "arial";
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+/* Dropdown Button */
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Dropdown button on hover & focus */
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: #2eb2ff;
+}
+
+/* The container <div> - needed to position the dropdown content */
+li.dropdown {
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Change color of dropdown links on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+
+}
+
+dt {
+	font-weight: bold;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+</style>
+</head>
+<body>
+<header></header>
+<ul>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Navigation</a>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </li>
+</ul>
+
+<h2>The Team members for this project include:</h2>
+<dl>
+	<dt>Peter Mooney:</dt>
+	<dd> Has experience working among a small team of engineers, both remotely and at a physical location.  He has extensive experience designing APIs and implementing them in Node.js and Ruby on Rails.  He brings experience in using React as a frontend development framework.  Peter will be responsible for building out scraper modules that will populate the database / S3 with content for consumption by our C# MVC Web Server.
+	<dt>Krzysztof Pawlikowski</dt>
+	<dd>Not a software engineer by trade but has written basic CRUD web applications. Most of his web development experience has been with PYTHON/PHP/Javascript/JQuery/MySQL. Has extensive experience working with SQL databases for data analysis purposes. Also has some experience automating web tasks using selenium webdriver. Krzysztof hopes to learn the agile software development process and perhaps a new database or web front end technology. Krzysztof will be in charge of working on the content aggregation from remote sites with Peter.</dd>
+	<dt>Conrad Carpenter</dt>
+	<dd>Software Engineer currently using ASP.Net web forms. Experience working with teams to create software and knowledge of object oriented techniques. Also worked as a web developer so has extensive knowledge of front end technologies. Conrad will be in charge of developing the .NET webserver and database connectivity.</dd>
+	<dt>Rachel Martinich</dt>
+	<dd>Has been teaching Computer Science at the High School level for 6 years. She was named one of the top 100 CS teachers in the US by the National Science Foundation. Knows the surface of HTML, Android Development, PHP, MySQL, and JavaScript. Hopes to learn more HTML/PHP/MySQL.  Rachel will be in charge of developing the front end code for users to interact with.</dd>
+
+
+<footer>
+	<P ALIGN="center">
+		<A HREF="index.html">Home</A> |
+		<A HREF="contact.html">Contact</A> |
+		<A HREF="help.html">Help</A> |
+		<A HREF="authors.html">Authors</A> 
+	</P> 
+
+	<p>CSC 535 Fall 2017</p>
+</footer>
+  
+</body>
+</html>
