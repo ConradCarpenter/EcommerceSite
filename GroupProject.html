@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+header {
+    background-image: url("banner.png");
+	background-repeat: no-repeat;
+	background-position: left;
+    clear: left;
+    text-align: center;
+	Height: 250px;
+	Width: 100%;
+}
+
+footer {
+    padding-top: 50px;
+	color: black;
+    clear: left;
+    text-align: center;
+	font-family: "arial", "sans-serif";
+}
+body {
+	font-family: "arial";
+}
+
+ul {
+    list-style-type: none;
+	font-family: "arial";
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+/* Dropdown Button */
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Dropdown button on hover & focus */
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: #2eb2ff;
+}
+
+/* The container <div> - needed to position the dropdown content */
+li.dropdown {
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Change color of dropdown links on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+
+}
+/* Table */
+table {
+    font-family: sans-serif;
+    border-collapse: collapse;
+    width: 75%;
+}
+
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+/* Alternate row color */
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+</style>
+</head>
+<body>
+<header></header>
+<ul>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Navigation</a>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </li>
+</ul>
+
+<h1>Thoughts on the site name?</h1>
+<h3>I made a dropdown menu inside the navigation bar.</h3>
+<p>I wanted to play around a little with javascript. If we want a standard navigation bar I can do that instead!</p>
+
+<table align="center">
+  <tr>
+    <th>Item</th>
+    <th>Picture</th>
+    <th>Asking Price</th>
+  </tr>
+  <tr>
+    <td>Dining Room Table</td>
+    <td>PICTURE</td>
+    <td>$100 OBO</td>
+  </tr>
+</table>
+
+<footer>
+	<P ALIGN="center">
+		<A HREF="index.html">Home</A> |
+		<A HREF="contact.html">Contact</A> |
+		<A HREF="help.html">Help</A> |
+		<A HREF="authors.html">Authors</A> 
+	</P> 
+
+	<p>CSC 535 Fall 2017</p>
+</footer>
+  
+</body>
+</html>
