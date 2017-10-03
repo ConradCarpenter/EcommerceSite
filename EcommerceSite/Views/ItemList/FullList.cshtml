@@ -9,13 +9,18 @@
     <h2>Sorry no Items are available</h2>
 
 }
-
-@foreach (var item in Model)
-{
-    <ul>
-        <li><h2>@Html.ActionLink(item.ItemName, "Item", "ItemPage", new {itemN = item.ItemNumber })</h2></li>
-        <li>Price = @item.Price</li>
-        <li><img src="@item.ImagURL" alt="Image" /></li>
-    </ul>
-
-}
+<table align="center">
+    <tr>
+        <th>Item</th>
+        <th>Picture</th>
+        <th>Asking Price</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(item.ItemName, "Item", "ItemPage", new { itemN = item.ItemNumber })</td>
+            <td><img src="@item.ImagURL" alt="Image" style="width:30%"/></td>
+            <td>$@item.Price OBO</td>
+        </tr>
+    }
+</table>

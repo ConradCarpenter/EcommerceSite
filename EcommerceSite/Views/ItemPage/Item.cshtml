@@ -2,7 +2,10 @@
 @{
     ViewData["Title"] = Model.ItemName;
 }
-
+<h1>@ViewBag.Message</h1>
 <h2>@Model.ItemName only $@Model.Price</h2>
-<img src="@Model.ImagURL" alt="Image" />
+<img src="@Model.ImagURL" alt="Image" style="width:30%"/>
 <p>@Model.Desc</p>
+<form method="post">
+    <button asp-for="name" type="submit" id="name" name="name" value="@Model.ItemName" class="btn btn-primary">Add to Cart</button>
+</form>

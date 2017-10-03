@@ -12,7 +12,8 @@ namespace EcommerceSite.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            TestData data = new TestData();
+            return View(data.Items);
         }
 
         public IActionResult About()
@@ -34,6 +35,6 @@ namespace EcommerceSite.Controllers
             return View();
         }
 
-
+        
     }
 }

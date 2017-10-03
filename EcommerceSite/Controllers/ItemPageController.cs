@@ -15,8 +15,8 @@ namespace EcommerceSite.Controllers
             var list = new TestData();
             var Items = list.Items;
             var i = new Item();
-            
-            foreach(var item in Items)
+
+            foreach (var item in Items)
             {
                 if (item.ItemNumber == itemN)
                 {
@@ -24,6 +24,16 @@ namespace EcommerceSite.Controllers
                 }
             }
             return View("Error");
+        }
+
+        [HttpPost]
+        public IActionResult Item(string name)
+        {
+            if(Request.Cookies["cart"] != null) Response.Cookies.Append("cart", Request.Cookies["cart"] + "-" + name);
+            else Response.Cookies.Append("cart", name);
+
+            ViewBag.Message = "Item added to cart";
+            return RedirectToAction("Total","Cart");
         }
     }
 }

@@ -7,6 +7,7 @@ using EcommerceSite.Models;
 
 namespace EcommerceSite.Controllers
 {
+    [Route("Items")]
     public class ItemListController : Controller
     {
         private readonly IRepo AllItems; 
