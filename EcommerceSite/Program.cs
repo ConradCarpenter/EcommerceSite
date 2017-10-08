@@ -11,9 +11,10 @@ namespace EcommerceSite
 {
     public class Program
     {
+        /*
         public static void Main(string[] args)
         {
-
+            
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
@@ -24,5 +25,6 @@ namespace EcommerceSite
 
             host.Run();
         }
+        */
     }
 }
