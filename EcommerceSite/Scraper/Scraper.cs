@@ -4,29 +4,34 @@ using System.Linq;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using EcommerceSite.Models;
 
-namespace EcommerceSite
+namespace EcommerceSite.Scraper
 {
     class Scraper
     {
         static void Main(string[] args)
         {
-            IWebDriver driver = new ChromeDriver();
+            // get array of listing ids
+            // AutoTraderIndex.getListings();
 
-            driver.Url = "https://www.autotrader.com/";
+            // For each listing...
+            try {
+				int listingId = 456883010; // Test ID
+				Item listing = new Item();
 
-            IWebElement element_CarsForSale = driver.FindElement(By.XPath("//a[@href='/cars-for-sale/?Log=0']"));
+				Pages.AutoTraderDetail detail = new Pages.AutoTraderDetail(new ChromeDriver());
+				detail.NavigateListing(listingId);
+				listing.ImageURL = detail.GetMainPhoto();
+				listing.Name = detail.GetTitle();
 
-            element_CarsForSale.Click();
-
-            //IWebElement element_SearchRadius = driver.FindElement(By.Name("searchRadius"));
-
-            //IWebElement element_ZipCode = driver.FindElement(By.Name("zip"));
-
-            //IWebElement element_MinimumPrice = driver.FindElement(By.Id("minPrice"));
-
-            //IWebElement element_MaximumPrice = driver.FindElement(By.Id("maxPrice"));
-
+                // Upload Photo to S3
+                // Get URL Back
+                // Save to DB
+                // listing.save!
+            } catch (NoSuchElementException) {
+                // Email Developer...
+            }
         }
     }
 }

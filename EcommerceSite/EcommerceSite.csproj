@@ -26,6 +26,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ItemPage\" />
+    <Folder Include="Scraper\" />
+    <Folder Include="Scraper\Pages\" />
   </ItemGroup>
 
 </Project>
