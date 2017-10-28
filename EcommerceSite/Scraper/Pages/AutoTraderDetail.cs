@@ -28,4 +28,5 @@ namespace EcommerceSite.Scraper.Pages
             return title.Text;
         }
     }
+
 }
