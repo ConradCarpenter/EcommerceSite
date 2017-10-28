@@ -11,7 +11,6 @@ namespace EcommerceSite
 {
     public class Program
     {
-        /*
         public static void Main(string[] args)
         {
             
@@ -25,6 +24,5 @@ namespace EcommerceSite
 
             host.Run();
         }
-        */
     }
 }
