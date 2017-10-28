@@ -7,8 +7,6 @@ using OpenQA.Selenium.Chrome;
 
 namespace EcommerceSite.Scraper.Pages
 {
-
-
     public class AutoTrader
     {
         const string baseURL = "https://www.autotrader.com";
@@ -18,14 +16,11 @@ namespace EcommerceSite.Scraper.Pages
         {
             this.driver = driver;
             driver.Url = baseURL;
-
         }
 
         public NavBar getNavBar()
         {
             return new NavBar(driver);
         }
-
     }
-
 }

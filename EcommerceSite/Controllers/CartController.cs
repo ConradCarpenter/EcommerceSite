@@ -40,6 +40,5 @@ namespace EcommerceSite.Controllers
         {
             return View();
         }
-  
     }
 }

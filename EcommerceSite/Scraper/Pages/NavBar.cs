@@ -9,14 +9,11 @@ namespace EcommerceSite.Scraper.Pages
 {
     public class NavBar
     {
-
-
         IWebDriver driver;
 
         public NavBar(IWebDriver driver)
         {
             this.driver = driver;
-            
         }
 
         //[FindsBy(How=How.CssSelector,Using = "//a[@href='/cars-for-sale/?Log=0']")]
@@ -29,9 +26,6 @@ namespace EcommerceSite.Scraper.Pages
             buttonCarsForSale.Click();
 
             return new CarsForSale(driver);
-
         }
-
-
     }
 }
