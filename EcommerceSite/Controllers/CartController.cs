@@ -21,7 +21,7 @@ namespace EcommerceSite.Controllers
             {
                 foreach(var i in dataItem)
                 {
-                    if (item == i.ItemName) {
+                    if (item == i.Name) {
                         cartItems.Add(i);
                         break; 
                     } 
@@ -40,6 +40,5 @@ namespace EcommerceSite.Controllers
         {
             return View();
         }
-  
     }
 }

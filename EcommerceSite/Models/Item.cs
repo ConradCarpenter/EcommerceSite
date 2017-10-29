@@ -7,10 +7,11 @@ namespace EcommerceSite.Models
 {
     public class Item
     {
-        public string ItemName { get; set; }
+        public string Name { get; set; }
         public int ItemNumber { get; set; }
         public double Price { get; set; }
         public string Desc { get; set; }
-        public string ImagURL { get; set; }
-    }
+        public string ImageURL { get; set; }
+		public string ListingURL { get; set; }
+	}
 }
