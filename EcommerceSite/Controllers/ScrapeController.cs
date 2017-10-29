@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EcommerceSite.Scraper;
+using Hangfire;
 
 namespace EcommerceSite.Controllers
 {
@@ -12,9 +13,8 @@ namespace EcommerceSite.Controllers
         public IActionResult AutoTrader()
         {
             WebsiteScraper Scraper = new WebsiteScraper();
-            Scraper.Scrape();
-            // Won't return anything yet, because we need a job worker to not block
-            // this thread!
+            BackgroundJob.Enqueue(() => Scraper.Scrape());
+
             return StatusCode(200);
         }
     }
