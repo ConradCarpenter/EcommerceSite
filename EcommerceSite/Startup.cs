@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using EcommerceSite.Models;
+using Hangfire;
+using EcommerceSite.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceSite
 {
@@ -31,6 +34,9 @@ namespace EcommerceSite
             // Add framework services.
             services.AddMvc();
             services.AddTransient<IRepo, TestData>();
+			services.AddHangfire(x => x.UseSqlServerStorage(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ItemContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +63,9 @@ namespace EcommerceSite
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{itemN?}");
             });
+
+			app.UseHangfireServer();
+			app.UseHangfireDashboard();
         }
     }
 }
