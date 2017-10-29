@@ -21,6 +21,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
     <PackageReference Include="Selenium.Support" Version="3.6.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.6.0" />
+    <PackageReference Include="HangFire" Version="1.6.17" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
