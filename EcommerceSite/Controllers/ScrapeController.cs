@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using EcommerceSite.Scraper;
 
 namespace EcommerceSite.Controllers
 {
     public class ScrapeController : Controller
     {
-        // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult AutoTrader()
         {
-            return View();
+            WebsiteScraper Scraper = new WebsiteScraper();
+            Scraper.Scrape();
+            // Won't return anything yet, because we need a job worker to not block
+            // this thread!
+            return StatusCode(200);
         }
     }
 }
