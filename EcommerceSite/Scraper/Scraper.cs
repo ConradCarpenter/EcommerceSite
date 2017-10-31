@@ -6,7 +6,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using EcommerceSite.Models;
 
-
 namespace EcommerceSite.Scraper
 {
     public class WebsiteScraper
