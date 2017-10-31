@@ -4,16 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EcommerceSite.Models;
+using EcommerceSite.Data;
 
 namespace EcommerceSite.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ItemContext _context;
+
+        public HomeController(ItemContext context)
+        {
+            _context = context;
+        }
 
         public IActionResult Index()
         {
-            TestData data = new TestData();
-            return View(data.Items);
+            return View(_context.Items.ToList());
         }
 
         public IActionResult About()
