@@ -6,19 +6,20 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using Microsoft.Extensions.Logging;
 
 namespace EcommerceSite.Scraper.Pages
 {
     public class CarsForSaleResult
     {
-        IWebDriver driver;
+        private IWebDriver driver;
 
         public CarsForSaleResult(IWebDriver driver)
         {
             this.driver = driver;
         }
 
-        public List<String> getAllPremiumListingIds()
+        public List<String> GetAllPremiumListingIds()
         {
             List<IWebElement> premiumListingIds = driver.FindElements(By.CssSelector("[data-qaid='cntnr-lstng-premium']")).ToList();
 
@@ -35,7 +36,7 @@ namespace EcommerceSite.Scraper.Pages
 
         }
 
-        public List<String> getAllStandardListingIds()
+        public List<String> GetAllStandardListingIds()
         {
             List<IWebElement> standardListingIds = driver.FindElements(By.CssSelector("[data-qaid='cntnr-lstng-standard']")).ToList();
 
@@ -52,7 +53,7 @@ namespace EcommerceSite.Scraper.Pages
 
         }
 
-        public CarsForSaleResult goToNextPage()
+        public CarsForSaleResult GoToNextPage()
         {
             IWebElement buttonNext = driver.FindElement(By.ClassName("glyphicon-menu-right"));
 
@@ -61,15 +62,19 @@ namespace EcommerceSite.Scraper.Pages
             return this;
         }
 
-        public bool existsNext()
+        public bool ExistsNext()
         {
 
-            var element = driver.FindElements(By.ClassName("glyphicon-menu-right")).Count >= 1 ? true : false;
 
-     
+            var element = driver.FindElements(By.ClassName("glyphicon-menu-right")).Count >= 2 ? true : false;
+
+            ILoggerFactory loggerFactory = new LoggerFactory().AddConsole().AddDebug();
+            ILogger logger = loggerFactory.CreateLogger<Program>();
+            logger.LogInformation("number of glyphicon-menu-right elemnets" + driver.FindElements(By.ClassName("glyphicon-menu-right")).Count.ToString());
+
             return element;
         }
 
-      
+
     }
 }

@@ -11,14 +11,14 @@ namespace EcommerceSite.Scraper.Pages
 {
     public class CarsForSale
     {
-        IWebDriver driver;
+        private IWebDriver driver;
 
         public CarsForSale(IWebDriver driver)
         {
             this.driver = driver;
         }
 
-        public void selectSearchRadius(String radius)
+        public void SelectSearchRadius(String radius)
         {
             /*We might want to check the radius before we try to set it.*/
 
@@ -27,7 +27,7 @@ namespace EcommerceSite.Scraper.Pages
             oSelect.SelectByValue(radius);
         }
 
-        public void selectMinPrice(String minPrice)
+        public void SelectMinPrice(String minPrice)
         {
             /*We might want to check the minPrice before we try to set it.*/
 
@@ -36,7 +36,7 @@ namespace EcommerceSite.Scraper.Pages
             oSelect.SelectByValue(minPrice);
         }
 
-        public void selectMaxPrice(String maxPrice)
+        public void SelectMaxPrice(String maxPrice)
         {
             /*We might want to check the maxPrice before we try to set it.*/
 
@@ -45,14 +45,14 @@ namespace EcommerceSite.Scraper.Pages
             oSelect.SelectByValue(maxPrice);
         }
 
-        public void enterZipCode(String zip)
+        public void EnterZipCode(String zip)
         {
             IWebElement inputBox = driver.FindElement(By.Name("zip"));
 
             inputBox.SendKeys(zip);
         }
 
-        public void selectCondition(String condition)
+        public void SelectCondition(String condition)
         {
             if (condition.ToLower() == "new")
             {
@@ -80,7 +80,7 @@ namespace EcommerceSite.Scraper.Pages
             }
         }
 
-        public void selectSellerType(String type)
+        public void SelectSellerType(String type)
         {
             if(type.ToLower() == "dealer")
             {
@@ -102,7 +102,7 @@ namespace EcommerceSite.Scraper.Pages
             }
         }
 
-        public CarsForSaleResult search()
+        public CarsForSaleResult Search()
         {
             IWebElement buttonSearch = driver.FindElement(By.XPath("//button[@type='submit']"));
 

@@ -16,24 +16,26 @@ namespace EcommerceSite.Scraper
             ChromeOptions options = new ChromeOptions();
             //options.AddArgument("headless");
             //options.AddArgument("window-size-1200X600");
-           
-            Pages.AutoTrader home = new Pages.AutoTrader(new ChromeDriver(options));
+
+            IWebDriver driver = new ChromeDriver(options);
+
+            Pages.AutoTrader home = new Pages.AutoTrader(driver);
 
             Pages.NavBar navbar = home.getNavBar();
 
-            Pages.CarsForSale carsforsale = navbar.goToCarsForSale();
+            Pages.CarsForSale carsforsale = navbar.GoToCarsForSale();
 
-            carsforsale.selectSearchRadius("25");
+            carsforsale.SelectSearchRadius("25");
 
-            carsforsale.enterZipCode("06457");
+            carsforsale.EnterZipCode("06457");
 
-            carsforsale.selectCondition("used");
+            carsforsale.SelectCondition("used");
 
-            carsforsale.selectMaxPrice("20000");
+            carsforsale.SelectMaxPrice("10000");
 
-            carsforsale.selectSellerType("dealer");
+            carsforsale.SelectSellerType("private");
 
-            Pages.CarsForSaleResult results = carsforsale.search();
+            Pages.CarsForSaleResult results = carsforsale.Search();
 
             //This list will hold all listing ids (premium and standard)
             List<String> listingIds = new List<String>();
@@ -42,14 +44,14 @@ namespace EcommerceSite.Scraper
             {
                 if (i != 0)
                 {
-                    results = results.goToNextPage();
+                    results = results.GoToNextPage();
                 }
 
                 //Get Premium Listings
-                var plist = results.getAllPremiumListingIds();
+                var plist = results.GetAllPremiumListingIds();
 
                 //Get Standard Listings
-                var slist = results.getAllStandardListingIds();
+                var slist = results.GetAllStandardListingIds();
 
                 //Add Premium and Standard listings to the main list
                 listingIds.AddRange(plist);
@@ -57,32 +59,34 @@ namespace EcommerceSite.Scraper
 
                 i++;
 
-            } while(results.existsNext());
-            //Console.Write(x);
+            } while(results.ExistsNext());
 
-            // get array of listing ids
-            // AutoTraderIndex.getListings();
 
-            // For each listing...
-            /*
-            try {
-				int listingId = 456883010; // Test ID
-				Item listing = new Item();
+            foreach (String listingId in listingIds)
+            {
 
-				Pages.AutoTraderDetail detail = new Pages.AutoTraderDetail(new ChromeDriver());
-				detail.NavigateListing(listingId);
-				listing.ImageURL = detail.GetMainPhoto();
-				listing.Name = detail.GetTitle();
+                try
+                {
+                   
+                    Item listing = new Item();
 
-                // Upload Photo to S3
-                // Get URL Back
-                // Save to DB
-                // listing.save!
-            } catch (NoSuchElementException) {
-                // Email Developer...
+                    Pages.AutoTraderDetail detail = new Pages.AutoTraderDetail(driver);
+                    detail.NavigateListing(listingId);
+                    listing.ImageURL = detail.GetMainPhoto();
+                    listing.Name = detail.GetTitle();
+
+                    // Upload Photo to S3
+                    // Get URL Back
+                    // Save to DB
+                    // listing.save!
+                }
+                catch (NoSuchElementException)
+                {
+                    // Email Developer...
+                }
             }
 
-             */
+             
         }
     }
 }

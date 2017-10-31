@@ -14,7 +14,7 @@ namespace EcommerceSite.Scraper.Pages
             this.driver = driver;
         }
 
-        public void NavigateListing(int listingId) {
+        public void NavigateListing(String listingId) {
             driver.Url = baseURL + listingId;
         }
 
