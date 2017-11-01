@@ -5,12 +5,19 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using EcommerceSite.Models;
-
+using EcommerceSite.Data;
 
 namespace EcommerceSite.Scraper
 {
     public class WebsiteScraper
     {
+        private readonly ItemContext _context;
+
+        public WebsiteScraper(ItemContext context)
+        {
+            _context = context;
+        }
+
         public void Scrape()
         {
             ChromeOptions options = new ChromeOptions();
@@ -86,7 +93,9 @@ namespace EcommerceSite.Scraper
                 }
             }
 
-             
+           
         }
+
+        
     }
 }
