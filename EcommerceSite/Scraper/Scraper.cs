@@ -6,6 +6,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using EcommerceSite.Models;
 using EcommerceSite.Data;
+using Microsoft.Extensions.Logging;
+
 
 namespace EcommerceSite.Scraper
 {
@@ -20,11 +22,20 @@ namespace EcommerceSite.Scraper
 
         public void Scrape()
         {
+
+            ILoggerFactory loggerFactory = new LoggerFactory().AddConsole().AddDebug();
+            ILogger logger = loggerFactory.CreateLogger<Program>();
+          
+
+
             ChromeOptions options = new ChromeOptions();
             //options.AddArgument("headless");
             //options.AddArgument("window-size-1200X600");
+            options.AddArgument("--start-maximized");
 
             IWebDriver driver = new ChromeDriver(options);
+
+            
 
             Pages.AutoTrader home = new Pages.AutoTrader(driver);
 
@@ -38,7 +49,7 @@ namespace EcommerceSite.Scraper
 
             carsforsale.SelectCondition("used");
 
-            carsforsale.SelectMaxPrice("10000");
+            carsforsale.SelectMaxPrice("8000");
 
             carsforsale.SelectSellerType("private");
 
@@ -57,17 +68,33 @@ namespace EcommerceSite.Scraper
                 //Get Premium Listings
                 var plist = results.GetAllPremiumListingIds();
 
+                logger.LogInformation("Number of plist: " + plist.Count.ToString());
+
+                //Get Featured Listings
+                var flist = results.GetAllFeaturedListingIds();
+
+                logger.LogInformation("Number of flist: " + flist.Count.ToString());
+
+                
                 //Get Standard Listings
                 var slist = results.GetAllStandardListingIds();
 
-                //Add Premium and Standard listings to the main list
+                logger.LogInformation("Number of slist: " + slist.Count.ToString());
+
+                //Add Premium/Featured/Standard listings to the main list
                 listingIds.AddRange(plist);
+                listingIds.AddRange(flist);
                 listingIds.AddRange(slist);
 
                 i++;
 
             } while(results.ExistsNext());
 
+            logger.LogInformation("This ran");
+
+            logger.LogInformation(String.Join(":",listingIds));
+
+            logger.LogInformation("This also ran");
 
             foreach (String listingId in listingIds)
             {
