@@ -49,7 +49,7 @@ namespace EcommerceSite.Scraper
 
             carsforsale.SelectCondition("used");
 
-            carsforsale.SelectMaxPrice("8000");
+            carsforsale.SelectMaxPrice("2000");
 
             carsforsale.SelectSellerType("private");
 
@@ -90,11 +90,9 @@ namespace EcommerceSite.Scraper
 
             } while(results.ExistsNext());
 
-            logger.LogInformation("This ran");
-
             logger.LogInformation(String.Join(":",listingIds));
 
-            logger.LogInformation("This also ran");
+            _context.Database.EnsureCreated();
 
             foreach (String listingId in listingIds)
             {
@@ -104,10 +102,16 @@ namespace EcommerceSite.Scraper
                    
                     Item listing = new Item();
 
-                    Pages.AutoTraderDetail detail = new Pages.AutoTraderDetail(driver);
+                    Pages.AutoTraderDetail detail = new Pages.AutoTraderDetail(driver,_context);
                     detail.NavigateListing(listingId);
                     listing.ImageURL = detail.GetMainPhoto();
                     listing.Name = detail.GetTitle();
+                    listing.Price = detail.GetPrice();
+                    listing.Desc = detail.GetDescription();
+
+                    _context.Items.Add(listing);
+
+                    _context.SaveChanges();
 
                     // Upload Photo to S3
                     // Get URL Back
