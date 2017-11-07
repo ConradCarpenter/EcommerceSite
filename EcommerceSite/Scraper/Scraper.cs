@@ -25,7 +25,7 @@ namespace EcommerceSite.Scraper
 
             ILoggerFactory loggerFactory = new LoggerFactory().AddConsole().AddDebug();
             ILogger logger = loggerFactory.CreateLogger<Program>();
-          
+
 
 
             ChromeOptions options = new ChromeOptions();
@@ -35,7 +35,7 @@ namespace EcommerceSite.Scraper
 
             IWebDriver driver = new ChromeDriver(options);
 
-            
+
 
             Pages.AutoTrader home = new Pages.AutoTrader(driver);
 
@@ -75,7 +75,7 @@ namespace EcommerceSite.Scraper
 
                 logger.LogInformation("Number of flist: " + flist.Count.ToString());
 
-                
+
                 //Get Standard Listings
                 var slist = results.GetAllStandardListingIds();
 
@@ -88,26 +88,30 @@ namespace EcommerceSite.Scraper
 
                 i++;
 
-            } while(results.ExistsNext());
+            } while (results.ExistsNext());
 
-            logger.LogInformation(String.Join(":",listingIds));
+            logger.LogInformation(String.Join(":", listingIds));
 
             _context.Database.EnsureCreated();
+
+            //Here we should remove the listingIds already in the database so we do not double scrape.
+
 
             foreach (String listingId in listingIds)
             {
 
                 try
                 {
-                   
+
                     Item listing = new Item();
 
-                    Pages.AutoTraderDetail detail = new Pages.AutoTraderDetail(driver,_context);
+                    Pages.AutoTraderDetail detail = new Pages.AutoTraderDetail(driver, _context);
                     detail.NavigateListing(listingId);
                     listing.ImageURL = detail.GetMainPhoto();
                     listing.Name = detail.GetTitle();
                     listing.Price = detail.GetPrice();
                     listing.Desc = detail.GetDescription();
+                    listing.ForeignListingId = listingId;
 
                     _context.Items.Add(listing);
 
@@ -124,9 +128,9 @@ namespace EcommerceSite.Scraper
                 }
             }
 
-           
+
         }
 
-        
+
     }
 }

@@ -25,7 +25,11 @@ namespace EcommerceSite.Migrations
                     b.Property<int>("ItemNumber")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreateTime");
+
                     b.Property<string>("Desc");
+
+                    b.Property<int>("ForeignListingId");
 
                     b.Property<string>("ImageURL");
 
