@@ -48,6 +48,54 @@ namespace EcommerceSite.Scraper.Pages
             IWebElement description = driver.FindElement(By.CssSelector("[data-qaid='cntnr-listingDescription']"));
             return description.Text;
         }
+
+        public void setMessage(String Message)
+        {
+            IWebElement input_box_message = driver.FindElement(By.ClassName("message"));
+
+            input_box_message.SendKeys(Message);
+        }
+
+        public void SetFirstName(String FirstName)
+        {
+            IWebElement input_box_first_name = driver.FindElement(By.ClassName("firstName"));
+
+            input_box_first_name.SendKeys(FirstName);
+
+        }
+
+        public void SetLastName(String LastName)
+        {
+           
+           IWebElement input_box_last_name = driver.FindElement(By.ClassName("lastName"));
+
+            input_box_last_name.SendKeys(LastName);
+
+        }
+
+        public void SetEmail(String Email)
+        {
+            IWebElement input_box_email = driver.FindElement(By.ClassName("emailAddress"));
+
+            input_box_email.SendKeys(Email);
+
+        }
+
+        public void UnselectSolicitations()
+        {
+            IWebElement checkbox = driver.FindElement(By.Id("optIntrue"));
+
+            checkbox.Click();
+
+        }
+
+        public void SubmitContactInfo()
+        {
+            IWebElement btn_submit = driver.FindElement(By.XPath("//button[@type='submit']"));
+
+            btn_submit.Click();
+
+        }
     }
 
 }

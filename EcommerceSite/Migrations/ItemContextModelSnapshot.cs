@@ -29,7 +29,7 @@ namespace EcommerceSite.Migrations
 
                     b.Property<string>("Desc");
 
-                    b.Property<int>("ForeignListingId");
+                    b.Property<string>("ForeignListingId");
 
                     b.Property<string>("ImageURL");
 

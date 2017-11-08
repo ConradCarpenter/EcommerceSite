@@ -81,6 +81,28 @@ namespace EcommerceSite.Scraper.Pages
 
         }
 
+        public List<String> GetAllCenterListingIds()
+        {
+
+            ILoggerFactory loggerFactory = new LoggerFactory().AddConsole().AddDebug();
+            ILogger logger = loggerFactory.CreateLogger<Program>();
+
+            List<IWebElement> cntrListings = driver.FindElements(By.CssSelector("E[data-qaid *= \"cntnr-lstng\"]")).ToList();
+
+            List<String> listingIds = new List<String>();
+
+            foreach (var element in cntrListings)
+            {
+                var id = element.GetAttribute("id");
+                logger.LogInformation("Found Standard Listing Id: " + id.ToString());
+                listingIds.Add(id);
+            }
+
+            return listingIds;
+
+
+        }
+
         public CarsForSaleResult GoToNextPage()
         {
             IWebElement buttonNext = driver.FindElement(By.ClassName("glyphicon-menu-right"));

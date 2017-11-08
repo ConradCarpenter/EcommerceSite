@@ -18,7 +18,7 @@ namespace EcommerceSite.Scraper.Pages
 
         public CarsForSale GoToCarsForSale()
         {
-            IWebElement buttonCarsForSale = driver.FindElement(By.XPath("//a[@href='/cars-for-sale/?Log=0']"));
+            IWebElement buttonCarsForSale = driver.FindElement(By.XPath("//a[@href='/cars-for-sale']"));
 
             buttonCarsForSale.Click();
 
