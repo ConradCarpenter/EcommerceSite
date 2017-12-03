@@ -36,7 +36,7 @@ namespace EcommerceSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			//services.AddHangfire(x => x.UseSqlServerStorage(Configuration.GetConnectionString("DefaultConnection")));
+			services.AddHangfire(x => x.UseSqlServerStorage(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ItemContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<ItemContext>()
@@ -118,10 +118,8 @@ namespace EcommerceSite
 
             app.UseSession();
 
-			//app.UseHangfireServer();
-			//app.UseHangfireDashboard();
-            //DbInitializer.Initialize(context);
-
+			app.UseHangfireServer();
+			app.UseHangfireDashboard();
         }
     }
 }
