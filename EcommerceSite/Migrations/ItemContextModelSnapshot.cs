@@ -71,6 +71,19 @@ namespace EcommerceSite.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("EcommerceSite.Data.UserPurchased", b =>
+                {
+                    b.Property<string>("UserID");
+
+                    b.Property<int>("ItemNumber");
+
+                    b.HasKey("UserID", "ItemNumber");
+
+                    b.HasIndex("ItemNumber");
+
+                    b.ToTable("UserPurchased");
+                });
+
             modelBuilder.Entity("EcommerceSite.Models.Item", b =>
                 {
                     b.Property<int>("ItemNumber")
@@ -90,11 +103,11 @@ namespace EcommerceSite.Migrations
 
                     b.Property<double>("Price");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserID");
 
                     b.HasKey("ItemNumber");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Items");
                 });
@@ -207,11 +220,24 @@ namespace EcommerceSite.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("EcommerceSite.Data.UserPurchased", b =>
+                {
+                    b.HasOne("EcommerceSite.Models.Item", "Item")
+                        .WithMany("Buyers")
+                        .HasForeignKey("ItemNumber")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EcommerceSite.Data.AppUser", "User")
+                        .WithMany("PurchaseItems")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("EcommerceSite.Models.Item", b =>
                 {
                     b.HasOne("EcommerceSite.Data.AppUser", "User")
                         .WithMany("UserItems")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
