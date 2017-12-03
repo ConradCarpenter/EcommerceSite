@@ -19,7 +19,7 @@ namespace EcommerceSite.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Items.ToList());
+            return View();
         }
 
         public IActionResult About()

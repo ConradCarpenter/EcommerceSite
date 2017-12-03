@@ -11,9 +11,10 @@ using System;
 namespace EcommerceSite.Migrations
 {
     [DbContext(typeof(ItemContext))]
-    partial class ItemContextModelSnapshot : ModelSnapshot
+    [Migration("20171126235502_User")]
+    partial class User
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,11 +77,7 @@ namespace EcommerceSite.Migrations
                     b.Property<int>("ItemNumber")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreateTime");
-
                     b.Property<string>("Desc");
-
-                    b.Property<string>("ForeignListingId");
 
                     b.Property<string>("ImageURL");
 
