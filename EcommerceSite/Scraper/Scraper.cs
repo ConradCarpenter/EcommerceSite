@@ -29,7 +29,7 @@ namespace EcommerceSite.Scraper
             logger.LogInformation("Starting AutoTrader.com scrapper");
 
             ChromeOptions options = new ChromeOptions();
-            options.AddArgument("headless");
+            //options.AddArgument("headless");
             options.AddArgument("window-size-1200X600");
             //options.AddArgument("--start-maximized");
 
