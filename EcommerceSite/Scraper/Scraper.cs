@@ -7,7 +7,7 @@ using OpenQA.Selenium.Chrome;
 using EcommerceSite.Models;
 using EcommerceSite.Data;
 using Microsoft.Extensions.Logging;
-
+using Hangfire;
 
 namespace EcommerceSite.Scraper
 {
@@ -20,6 +20,7 @@ namespace EcommerceSite.Scraper
             _context = context;
         }
 
+        [AutomaticRetry(Attempts = 0)]
         public void Scrape()
         {
 
