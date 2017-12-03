@@ -29,9 +29,9 @@ namespace EcommerceSite.Scraper
             logger.LogInformation("Starting AutoTrader.com scrapper");
 
             ChromeOptions options = new ChromeOptions();
-            //options.AddArgument("headless");
-            //options.AddArgument("window-size-1200X600");
-            options.AddArgument("--start-maximized");
+            options.AddArgument("headless");
+            options.AddArgument("window-size-1200X600");
+            //options.AddArgument("--start-maximized");
 
             IWebDriver driver = new ChromeDriver(options);
 
@@ -73,7 +73,7 @@ namespace EcommerceSite.Scraper
             int i = 0;
             do
             {
-                logger.LogInformation("Scraping Page: " + i.ToString());
+                logger.LogInformation("Scraping CarsForSaleResult: " + (i+1).ToString());
 
                 if (i != 0)
                 {
@@ -111,40 +111,37 @@ namespace EcommerceSite.Scraper
 
             } while (results.ExistsNext());
 
-            logger.LogInformation(String.Join(":", listingIds));
 
             _context.Database.EnsureCreated();
 
-           
-         
-            foreach (String listingId in listingIds)
-            {
+            //foreach (String listingId in listingIds)
+            for (i = 0; i < listingIds.Count(); i++){
 
+                logger.LogCritical("i: " + i.ToString());
                 try
                 {
 
-                    logger.LogInformation("Scraping Listing Id:" + listingId);
+                    logger.LogInformation("Scraping Listing Id:" + listingIds[i] + "\tid[" + i.ToString() + " of "+ listingIds.Count().ToString() + "]");
 
                     //Here we should remove the listingIds already in the database so we do not double scrape.
 
-                    List<Item> it = _context.Items.Where(p => p.ForeignListingId == listingId).ToList();
+                    List<Item> it = _context.Items.Where(p =>p.ForeignListingId.Equals(listingIds[i])).ToList();
 
-                    logger.LogInformation(it.ToString());
+                    logger.LogInformation("size of list: ");
+                    logger.LogInformation(it.Count().ToString());
 
-                    logger.LogInformation("Retrieved listing foreign id: " + it[0].ForeignListingId.ToString()); 
-
-                    if (it.Count > 0)
+                    if (it.Count() ==0)
                     {
-                        logger.LogInformation("Adding new item:" + listingId);
+                        logger.LogInformation("Adding new item:" + listingIds[i]);
                         Item listing = new Item();
 
                         Pages.AutoTraderDetail detail = new Pages.AutoTraderDetail(driver, _context);
-                        detail.NavigateListing(listingId);
+                        detail.NavigateListing(listingIds[i]);
                         listing.ImageURL = detail.GetMainPhoto();
                         listing.Name = detail.GetTitle();
                         listing.Price = detail.GetPrice();
                         listing.Desc = detail.GetDescription();
-                        listing.ForeignListingId = listingId;
+                        listing.ForeignListingId = listingIds[i];
 
                         _context.Items.Add(listing);
 
@@ -153,15 +150,9 @@ namespace EcommerceSite.Scraper
                     }
                     else
                     {
-                        logger.LogInformation("Not adding item: " + listingId + " it already exits");
+                        logger.LogInformation("Not adding item: " + listingIds[i] + " it already exits");
                     }
 
-
-
-                    // Upload Photo to S3
-                    // Get URL Back
-                    // Save to DB
-                    // listing.save!
                 }
                 catch (NoSuchElementException)
                 {
@@ -169,8 +160,11 @@ namespace EcommerceSite.Scraper
                 }
             }
 
+            logger.LogInformation("scraper has finished");
 
+        
         }
+        
 
 
     }

@@ -87,14 +87,25 @@ namespace EcommerceSite.Scraper.Pages
             ILoggerFactory loggerFactory = new LoggerFactory().AddConsole().AddDebug();
             ILogger logger = loggerFactory.CreateLogger<Program>();
 
-            List<IWebElement> cntrListings = driver.FindElements(By.CssSelector("E[data-qaid *= \"cntnr-lstng\"]")).ToList();
+            List<IWebElement> cntrListings = new List<IWebElement>();
+
+            for(var i = 0; i<10; i ++)
+            {
+                String selector = "div[data-qaid *= \"cntnr-lstng-" + i.ToString() + "\"]";
+
+                //logger.LogInformation("selector: " + selector);
+
+                List<IWebElement> tmp = driver.FindElements(By.CssSelector(selector)).ToList();
+
+                cntrListings.AddRange(tmp);
+            }
 
             List<String> listingIds = new List<String>();
 
             foreach (var element in cntrListings)
             {
                 var id = element.GetAttribute("id");
-                logger.LogInformation("Found Standard Listing Id: " + id.ToString());
+                logger.LogInformation("Found Center Listing Id: " + id.ToString());
                 listingIds.Add(id);
             }
 
