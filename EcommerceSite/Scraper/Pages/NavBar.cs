@@ -16,12 +16,9 @@ namespace EcommerceSite.Scraper.Pages
             this.driver = driver;
         }
 
-        //[FindsBy(How=How.CssSelector,Using = "//a[@href='/cars-for-sale/?Log=0']")]
-        //private IWebElement x { get; set; }
-
-        public CarsForSale goToCarsForSale()
+        public CarsForSale GoToCarsForSale()
         {
-            IWebElement buttonCarsForSale = driver.FindElement(By.XPath("//a[@href='/cars-for-sale/?Log=0']"));
+            IWebElement buttonCarsForSale = driver.FindElement(By.XPath("//a[@href='/cars-for-sale/']"));
 
             buttonCarsForSale.Click();
 

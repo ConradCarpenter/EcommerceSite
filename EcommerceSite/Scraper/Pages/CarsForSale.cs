@@ -11,14 +11,14 @@ namespace EcommerceSite.Scraper.Pages
 {
     public class CarsForSale
     {
-        IWebDriver driver;
+        private IWebDriver driver;
 
         public CarsForSale(IWebDriver driver)
         {
             this.driver = driver;
         }
 
-        public void selectSearchRadius(String radius)
+        public void SelectSearchRadius(String radius)
         {
             /*We might want to check the radius before we try to set it.*/
 
@@ -27,7 +27,7 @@ namespace EcommerceSite.Scraper.Pages
             oSelect.SelectByValue(radius);
         }
 
-        public void selectMinPrice(String minPrice)
+        public void SelectMinPrice(String minPrice)
         {
             /*We might want to check the minPrice before we try to set it.*/
 
@@ -36,7 +36,7 @@ namespace EcommerceSite.Scraper.Pages
             oSelect.SelectByValue(minPrice);
         }
 
-        public void selectMaxPrice(String maxPrice)
+        public void SelectMaxPrice(String maxPrice)
         {
             /*We might want to check the maxPrice before we try to set it.*/
 
@@ -45,31 +45,31 @@ namespace EcommerceSite.Scraper.Pages
             oSelect.SelectByValue(maxPrice);
         }
 
-        public void enterZipCode(String zip)
+        public void EnterZipCode(String zip)
         {
             IWebElement inputBox = driver.FindElement(By.Name("zip"));
 
             inputBox.SendKeys(zip);
         }
 
-        public void selectCondition(String condition)
+        public void SelectCondition(String condition)
         {
             if (condition.ToLower() == "new")
             {
-                IWebElement checkboxNew = driver.FindElement(By.XPath("//div[@data-reactid='159']"));
+                IWebElement checkboxNew = driver.FindElement(By.XPath("//div[@data-reactid='158']"));
 
                 checkboxNew.Click();
 
             }
             else if (condition.ToLower() == "used")
             {
-                IWebElement checkboxUsed = driver.FindElement(By.XPath("//div[@data-reactid='164']"));
+                IWebElement checkboxUsed = driver.FindElement(By.XPath("//div[@data-reactid='163']"));
                 checkboxUsed.Click();
 
             }
             else if (condition.ToLower() == "certified")
             {
-                IWebElement checkboxCertified = driver.FindElement(By.XPath("//div[@data-reactid='169']"));
+                IWebElement checkboxCertified = driver.FindElement(By.XPath("//div[@data-reactid='168']"));
                 checkboxCertified.Click();
 
             }
@@ -80,18 +80,18 @@ namespace EcommerceSite.Scraper.Pages
             }
         }
 
-        public void selectSellerType(String type)
+        public void SelectSellerType(String type)
         {
             if(type.ToLower() == "dealer")
             {
-                IWebElement checkboxDealer = driver.FindElement(By.XPath("//div[@data-reactid='1135']"));
+                IWebElement checkboxDealer = driver.FindElement(By.XPath("//div[@data-reactid='1134']"));
 
                 checkboxDealer.Click();
 
             }
             else if(type.ToLower() == "private")
             {
-                IWebElement checkboxPrivate = driver.FindElement(By.XPath("//div[@data-reactid='1142']"));
+                IWebElement checkboxPrivate = driver.FindElement(By.XPath("//div[@data-reactid='1141']"));
 
                 checkboxPrivate.Click();
             }
@@ -102,7 +102,7 @@ namespace EcommerceSite.Scraper.Pages
             }
         }
 
-        public CarsForSaleResult search()
+        public CarsForSaleResult Search()
         {
             IWebElement buttonSearch = driver.FindElement(By.XPath("//button[@type='submit']"));
 

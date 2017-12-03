@@ -9,8 +9,8 @@ namespace EcommerceSite.Scraper.Pages
 {
     public class AutoTrader
     {
-        const string baseURL = "https://www.autotrader.com";
-        IWebDriver driver;
+        private const string baseURL = "https://www.autotrader.com";
+        private IWebDriver driver;
 
         public AutoTrader(IWebDriver driver)
         {
