@@ -28,6 +28,16 @@
                 <li class="active">@Html.ActionLink("Item List", "FullList", "ItemList")</li>
                 <li class="active">@Html.ActionLink("About US", "About", "Home")</li>
                 <li class="active">@Html.ActionLink("Scrape", "AutoTrader", "Scrape")</li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="active">@Html.ActionLink(User.Identity.Name, "Index", "User")</li>
+                    <li class="active">@Html.ActionLink("Logout", "Logout", "User")</li>
+                }
+                else
+                {
+                    <li class="active">@Html.ActionLink("SignUp", "Register", "User")</li>
+                    <li class="active">@Html.ActionLink("Login", "Login", "User")</li>
+                }
             </ul>
         </div>
     </nav>

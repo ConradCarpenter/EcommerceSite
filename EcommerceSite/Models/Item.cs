@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EcommerceSite.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,5 +20,8 @@ namespace EcommerceSite.Models
 		public string ListingURL { get; set; }
         public DateTime CreateTime { get; set; }
         public string ForeignListingId { get; set; }
+        public string UserID { get; set; }
+        public virtual AppUser User { get; set; }
+        public virtual ICollection<UserPurchased> Buyers { get; set; }
 	}
 }
