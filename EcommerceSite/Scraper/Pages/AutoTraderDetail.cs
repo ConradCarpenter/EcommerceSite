@@ -93,7 +93,7 @@ namespace EcommerceSite.Scraper.Pages
         {
             IWebElement btn_submit = driver.FindElement(By.XPath("//button[@type='submit']"));
 
-            btn_submit.Click();
+            //btn_submit.Click();
 
         }
     }
