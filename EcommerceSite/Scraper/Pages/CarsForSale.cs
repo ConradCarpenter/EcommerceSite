@@ -56,20 +56,20 @@ namespace EcommerceSite.Scraper.Pages
         {
             if (condition.ToLower() == "new")
             {
-                IWebElement checkboxNew = driver.FindElement(By.XPath("//div[@data-reactid='158']"));
+                IWebElement checkboxNew = driver.FindElement(By.XPath("//div[contains(.,'New')]"));
 
                 checkboxNew.Click();
 
             }
             else if (condition.ToLower() == "used")
             {
-                IWebElement checkboxUsed = driver.FindElement(By.XPath("//div[@data-reactid='163']"));
+                IWebElement checkboxUsed = driver.FindElement(By.XPath("//div[contains(.,'Used')]"));
                 checkboxUsed.Click();
 
             }
             else if (condition.ToLower() == "certified")
             {
-                IWebElement checkboxCertified = driver.FindElement(By.XPath("//div[@data-reactid='168']"));
+                IWebElement checkboxCertified = driver.FindElement(By.XPath("//div[contains(.,'Certified')]"));
                 checkboxCertified.Click();
 
             }
@@ -84,14 +84,14 @@ namespace EcommerceSite.Scraper.Pages
         {
             if(type.ToLower() == "dealer")
             {
-                IWebElement checkboxDealer = driver.FindElement(By.XPath("//div[@data-reactid='1134']"));
+                IWebElement checkboxDealer = driver.FindElement(By.XPath("//div[contains(.,'Dealers Only ')]"));
 
                 checkboxDealer.Click();
 
             }
             else if(type.ToLower() == "private")
             {
-                IWebElement checkboxPrivate = driver.FindElement(By.XPath("//div[@data-reactid='1141']"));
+                IWebElement checkboxPrivate = driver.FindElement(By.XPath("//div[contains(.,'Private Sellers Only ')]"));
 
                 checkboxPrivate.Click();
             }

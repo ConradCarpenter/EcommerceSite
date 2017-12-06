@@ -56,7 +56,7 @@ namespace EcommerceSite.Scraper
 
             logger.LogInformation("Selected Condition");
 
-            carsforsale.SelectMaxPrice("10000");
+            carsforsale.SelectMaxPrice("2000");
 
             logger.LogInformation("Selected Max Price");
 

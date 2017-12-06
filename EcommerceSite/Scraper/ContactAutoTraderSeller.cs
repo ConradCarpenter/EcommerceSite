@@ -18,7 +18,7 @@ namespace EcommerceSite.Scraper
             _context = context;
         }
 
-        public void contact()
+        public void contact(String listingId, String firstName, String lastName, String message, String Email)
         {
             ILoggerFactory loggerFactory = new LoggerFactory().AddConsole().AddDebug();
             ILogger logger = loggerFactory.CreateLogger<Program>();
@@ -29,6 +29,27 @@ namespace EcommerceSite.Scraper
             options.AddArgument("--start-maximized");
 
             IWebDriver driver = new ChromeDriver(options);
+
+            Pages.AutoTraderDetail details = new Pages.AutoTraderDetail(driver, _context);
+
+            /*Navigate to listing*/
+            details.NavigateListing(listingId);
+
+            /* Set the First Name in the contact form*/
+            details.SetFirstName(firstName);
+
+            /* Set the Last Name in the contact form*/
+            details.SetLastName(lastName);
+
+            /* Set the Message in the contact form*/
+            details.setMessage(message);
+
+            /* Set the Email in the contact form*/
+            details.SetEmail(Email);
+
+            // Keep this off so that you don't spam people
+            //details.SubmitContactInfo();
+
         }
 
     }
