@@ -1,116 +1,72 @@
 ﻿body, html {
     height: 100%;
 }
-.bodyObject{
-    background-color: white;
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    height: 6%;
 }
-header {
-    background-image: url('../images/banner.png');
-    background-repeat: no-repeat;
-    background-position: left;
-    clear: left;
-    text-align: center;
-    Height: 250px;
-    Width: 100%;
+
+.main {
+    height: 78%;
 }
-.container {
-    /* The image used */
-    background-image: url("https://ak6.picdn.net/shutterstock/videos/9825776/thumb/1.jpg?i10c=img.resize(height:160)");
-    /* Full height */
+
+.main-content {
     height: 100%;
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    display: flex;
+    width: 100%;
 }
 
+.footer {
+    height: 14%;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+    /*height: 450px;*/i
+}
+
+ul li {
+    list-style: none;
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    background-image: url("../images/pattern2.png");
+    height: 100%;
+    color: white;
+}
+
+/* Set black background color, white text and some padding */
 footer {
-    padding-top: 50px;
-    color: black;
-    clear: left;
-    text-align: center;
-    font-family: "arial", "sans-serif";
+    background-color: black;
+    color: white;
+    padding: 10px;
 }
 
-body {
-    font-family: "arial";
-}
-
-ul {
-    list-style-type: none;
-    font-family: "arial";
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-li {
-    float: left;
-}
-
-    /* Dropdown Button */
-    li a, .dropbtn {
-        display: inline-block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
     }
 
-        /* Dropdown button on hover & focus */
-        li a:hover, .dropdown:hover .dropbtn {
-            background-color: #2eb2ff;
-        }
-
-    /* The container <div> - needed to position the dropdown content */
-    li.dropdown {
-        display: inline-block;
+    .row.content {
+        height: auto;
     }
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
 }
 
-    /* Links inside the dropdown */
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
-    }
-
-        /* Links inside the dropdown */
-        .dropdown-content a:hover {
-            background-color: #f1f1f1
-        }
-
-/* Change color of dropdown links on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-/* Table */
-table {
-    font-family: sans-serif;
-    border-collapse: collapse;
-    width: 75%;
+.mainbackground {
+    background-color: #CDEDF0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
-}
-
-/* Alternate row color */
-tr:nth-child(even) {
-    background-color: #dddddd;
+.mainbackground center:first-child {
+    margin-bottom: 16px;
 }
