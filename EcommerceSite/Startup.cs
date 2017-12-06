@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication;
+using EcommerceSite.Scraper;
 
 namespace EcommerceSite
 {
@@ -120,6 +121,11 @@ namespace EcommerceSite
 
 			app.UseHangfireServer();
 			app.UseHangfireDashboard();
+
+            // Starts a recurring job at 2 AM every day
+            // Uses a CRON expression: https://en.wikipedia.org/wiki/Cron#CRON_expression
+            WebsiteScraper Scraper = new WebsiteScraper(context);
+            RecurringJob.AddOrUpdate(() => Scraper.Scrape(), "0 2 * * *");
         }
     }
 }
