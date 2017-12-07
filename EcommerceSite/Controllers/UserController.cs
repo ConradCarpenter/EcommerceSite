@@ -102,6 +102,17 @@ namespace EcommerceSite.Controllers
         {
             var CurrentUser = await _userManager.GetUserAsync(HttpContext.User);
             var items = _context.Items.Where(p => p.User == CurrentUser).ToList();
+            var up = new List<UserPurchased>();
+            try
+            {
+                up = _context.UserPurchased.Where(i => i.ItemNumber == items.First().ItemNumber).ToList();
+            }
+            catch 
+            {
+            }
+            
+            ViewBag.number = up.Count;
+
             return View(items);
         }
         
@@ -160,15 +171,64 @@ namespace EcommerceSite.Controllers
         [HttpGet]
         public IActionResult EditItem(int id)
         {
+            ItemViewModel vm = new ItemViewModel();
             try
             {
-
+                var item = _context.Items.FirstOrDefault(i => i.ItemNumber == id);
+                vm.Number = item.ItemNumber;
+                vm.Price = item.Price;
+                vm.ImageURL = item.ImageURL;
+                vm.Name = item.Name;
+                vm.Desc = item.Desc;
             }
             catch
             {
 
             }
-            return View();
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult EditItem(ItemViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+               var item = _context.Items.FirstOrDefault(i => i.ItemNumber == model.Number);
+                item.Name = model.Name;
+                item.Price = model.Price;
+                item.Desc = model.Desc;
+                item.ImageURL = model.ImageURL;
+
+                _context.SaveChanges();
+            }
+            catch
+            {
+            }
+
+            return RedirectToAction("Index");
+
+        }
+
+        public IActionResult Details(int id)
+        {
+            var emails = new List<string>();
+            try
+            {
+                emails = _context.UserPurchased.Where(u => u.ItemNumber == id).Select(p => p.User.Email).ToList();
+            }
+            catch
+            {
+            }
+            
+     
+            
+            
+            return View(emails);
         }
     }
 }

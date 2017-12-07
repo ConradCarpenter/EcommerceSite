@@ -18,7 +18,7 @@ namespace EcommerceSite.Models
         public string Desc { get; set; }
         public string ImageURL { get; set; }
 		public string ListingURL { get; set; }
-        public DateTime CreateTime { get; set; }
+        public DateTime? CreateTime { get; set; }
         public string ForeignListingId { get; set; }
         public string UserID { get; set; }
         public virtual AppUser User { get; set; }

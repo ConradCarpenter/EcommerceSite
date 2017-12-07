@@ -11,7 +11,8 @@ namespace EcommerceSite.Migrations
             migrationBuilder.AddColumn<DateTime>(
                 name: "CreateTime",
                 table: "Items",
-                type: "datetime2");
+                type: "datetime2",
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
