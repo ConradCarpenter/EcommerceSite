@@ -49,7 +49,7 @@
                     else
 				    {
 				        <li>@Html.ActionLink("SignUp", "Register", "User")</li>
-				        <li><a href="@Url.Action("Login", "Login", "User")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				        <li><a href="@Url.Action("login", "user")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     }
 			    </ul>
 			 </div>	
@@ -57,11 +57,9 @@
     </nav>
 		
     <div class="main text-center">
-<!--        <div class="bodyObject">-->
-            <div class="content main-content">
+        <div class="content main-content">
 			    @RenderBody()
-			</div>
-<!--        </div>-->
+		</div>
     </div>
 
     <footer class="footer container-fluid text-center">

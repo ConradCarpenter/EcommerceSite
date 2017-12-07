@@ -10,7 +10,7 @@
 }
 
 .main {
-    height: 78%;
+    height: 80%;
 }
 
 .main-content {
@@ -21,11 +21,6 @@
 
 .footer {
     height: 14%;
-}
-
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {
-    /*height: 450px;*/i
 }
 
 ul li {
@@ -65,6 +60,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
 }
 
 .mainbackground center:first-child {
