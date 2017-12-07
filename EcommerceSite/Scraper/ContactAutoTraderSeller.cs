@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Hangfire;
 
 namespace EcommerceSite.Scraper
 {
@@ -17,11 +18,16 @@ namespace EcommerceSite.Scraper
         {
             _context = context;
         }
-
-        public void contact(String listingId, String firstName, String lastName, String message, String Email)
+        [AutomaticRetry(Attempts = 0)]
+        public void contact(String listingId, String Email)
         {
             ILoggerFactory loggerFactory = new LoggerFactory().AddConsole().AddDebug();
             ILogger logger = loggerFactory.CreateLogger<Program>();
+
+            String firstName = "Another";
+            String lastName = "Treasure";
+            String message = "Our user is interested in the item. Please contact them via EMAIL";
+
 
             ChromeOptions options = new ChromeOptions();
             //options.AddArgument("headless");
@@ -49,6 +55,9 @@ namespace EcommerceSite.Scraper
 
             // Keep this off so that you don't spam people
             //details.SubmitContactInfo();
+
+            /* Close the browser window*/
+            driver.Close();
 
         }
 

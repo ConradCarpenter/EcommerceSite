@@ -56,11 +56,15 @@ namespace EcommerceSite.Scraper
 
             logger.LogInformation("Selected Condition");
 
-            carsforsale.SelectMaxPrice("2000");
+            carsforsale.SelectMinPrice("90000");
+
+            logger.LogInformation("Selected Min Price");
+
+            carsforsale.SelectMaxPrice("100000");
 
             logger.LogInformation("Selected Max Price");
 
-            carsforsale.SelectSellerType("private");
+            carsforsale.SelectSellerType("dealer");
 
             logger.LogInformation("Selected Seller Type");
 
@@ -116,7 +120,16 @@ namespace EcommerceSite.Scraper
             _context.Database.EnsureCreated();
 
             //foreach (String listingId in listingIds)
-            for (i = 0; i < listingIds.Count(); i++){
+
+            int scrapeCount = 0;
+
+            if (listingIds.Count() < 25){
+                scrapeCount = listingIds.Count();
+            }else{
+                scrapeCount = 25;
+            }
+
+            for (i = 0; i < scrapeCount; i++){
 
                 logger.LogCritical("i: " + i.ToString());
                 try
@@ -162,6 +175,10 @@ namespace EcommerceSite.Scraper
             }
 
             logger.LogInformation("scraper has finished");
+
+
+            /* Close the browser window*/
+            driver.Close();
 
         
         }

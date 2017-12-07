@@ -7,6 +7,8 @@ using EcommerceSite.Models;
 using EcommerceSite.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using EcommerceSite.Scraper;
+using Hangfire;
 
 namespace EcommerceSite.Controllers
 {
@@ -61,6 +63,14 @@ namespace EcommerceSite.Controllers
                     if (item == i.Name)
                     {
                         cartItems.Add(i);
+
+                        ContactAutoTraderSeller Contacter = new ContactAutoTraderSeller(_context);
+
+                        var tmpUser = await _userManager.GetUserAsync(User);
+                        var email = tmpUser.Email;
+
+                        BackgroundJob.Enqueue(() =>Contacter.contact(i.ForeignListingId,email));
+
                         break;
                     }
                 }
