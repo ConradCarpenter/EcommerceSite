@@ -76,6 +76,21 @@ namespace EcommerceSite.Controllers
                 }
             }
 
+            foreach (var item in cartItems)
+            {
+                if(item.User != null)
+                {
+                    UserPurchased up = new UserPurchased();
+                    up.User = await _userManager.GetUserAsync(User);
+                    up.Item = item;
+                    item.Buyers.Add(up);
+
+                   var si = _context.Items.FirstOrDefault(i => i.ItemNumber == item.ItemNumber);
+                    si.Buyers.Add(up);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
             return View();
         }
     }

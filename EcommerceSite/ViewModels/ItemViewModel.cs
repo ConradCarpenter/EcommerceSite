@@ -9,6 +9,8 @@ namespace EcommerceSite.ViewModels
 {
     public class ItemViewModel
     {
+        public int Number { get; set; }
+
         [Required]
         public string Name { get; set; }
 

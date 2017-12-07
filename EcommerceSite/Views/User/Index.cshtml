@@ -31,6 +31,7 @@ else
                 <th>
                     @Html.DisplayNameFor(model => model.ImageURL)	
                 </th>
+                <th># of Buyers</th>
                 <th></th>
             </tr>
         </thead>
@@ -51,8 +52,11 @@ else
                         <img class="item-list__picture" src="@item.ImageURL" alt="Image"/>
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @item.Buyers.Count
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditItem", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.ItemNumber }) |
                         @Html.ActionLink("Delete", "DeleteItem", new { id=item.ItemNumber })
                     </td>
                 </tr>
