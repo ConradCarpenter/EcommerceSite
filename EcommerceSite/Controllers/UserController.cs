@@ -205,7 +205,16 @@ namespace EcommerceSite.Controllers
 
         public IActionResult Details(int id)
         {
-            var emails = _context.Items.Where(i => i.ItemNumber == id).SelectMany(i => i.Buyers).Select(b=> b.User.Email).ToList();
+            var emails = new List<string>();
+            try
+            {
+                emails = _context.Items.Where(i => i.ItemNumber == id).SelectMany(i => i.Buyers).Select(b=> b.User.Email).ToList();
+            }
+            catch (Exception)
+            {
+
+            }
+            
             
             return View(emails);
         }

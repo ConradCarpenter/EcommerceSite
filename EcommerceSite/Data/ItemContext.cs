@@ -16,6 +16,7 @@ namespace EcommerceSite.Data
         }
 
         public DbSet<Item> Items { get; set; }
+        public DbSet<UserPurchased> UserPurchased { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

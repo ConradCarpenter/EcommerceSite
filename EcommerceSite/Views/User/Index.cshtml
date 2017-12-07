@@ -52,10 +52,17 @@ else
                         <img class="item-list__picture" src="@item.ImageURL" alt="Image"/>
                     </td>
                     <td>
-                        @item.Buyers.Count
+                        @if(item.Buyers == null)
+                        {
+                            <span>0</span>
+                        }
+                        else
+                        {
+                            @item.Buyers.Count
+                        }  
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditItem", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Edit", "EditItem", new { id=item.ItemNumber }) |
                         @Html.ActionLink("Details", "Details", new { id=item.ItemNumber }) |
                         @Html.ActionLink("Delete", "DeleteItem", new { id=item.ItemNumber })
                     </td>
