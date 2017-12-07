@@ -37,7 +37,7 @@ namespace EcommerceSite.Controllers
         {
             if(Request.Cookies["cart"] != null) Response.Cookies.Append("cart", Request.Cookies["cart"] + "-" + name);
             else Response.Cookies.Append("cart", name);
-
+            
             ViewBag.Message = "Item added to cart";
             return RedirectToAction("Total","Cart");
         }

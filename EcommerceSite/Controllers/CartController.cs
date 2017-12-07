@@ -101,7 +101,7 @@ namespace EcommerceSite.Controllers
                     BackgroundJob.Enqueue(() =>Contacter.contact(item.ForeignListingId, email));
                 }
             }
-
+            Response.Cookies.Delete("cart");
             return View();
         }
     }

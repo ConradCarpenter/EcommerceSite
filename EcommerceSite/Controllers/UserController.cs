@@ -189,7 +189,7 @@ namespace EcommerceSite.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditItem(ItemViewModel model)
+        public async Task<IActionResult> EditItem(ItemViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -204,7 +204,7 @@ namespace EcommerceSite.Controllers
                 item.Desc = model.Desc;
                 item.ImageURL = model.ImageURL;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch
             {
