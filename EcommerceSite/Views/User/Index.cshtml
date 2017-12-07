@@ -4,8 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Welcome @User.Identity.Name</h2>
-@Html.ActionLink("Add Item", "AddItem")
+<div class="col-xs-8 col-xs-offset-2 text-left main-body user-home">
+<div class="user-home__header">
+    <h2>Welcome @User.Identity.Name</h2>
+	@Html.ActionLink("Add Item", "AddItem")
+</div>
 @if (Model == null || Model.Count() == 0)
 {
 
@@ -26,7 +29,7 @@ else
                     @Html.DisplayNameFor(model => model.Desc)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ImageURL)
+                    @Html.DisplayNameFor(model => model.ImageURL)	
                 </th>
                 <th></th>
             </tr>
@@ -45,7 +48,7 @@ else
                         @Html.DisplayFor(modelItem => item.Desc)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ImageURL)
+                        <img class="item-list__picture" src="@item.ImageURL" alt="Image"/>
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
@@ -55,7 +58,6 @@ else
                 </tr>
             }
         </tbody>
-    </table>
-
-
+    </table>  
 }
+</div>

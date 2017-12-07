@@ -2,10 +2,16 @@
 @{
     ViewData["Title"] = Model.Name;
 }
+<div class="col-xs-8 col-xs-offset-2 text-left main-body item-detail">
+
 <h1>@ViewBag.Message</h1>
 <h2>@Model.Name only $@Model.Price</h2>
-<img src="@Model.ImageURL" alt="Image" style="width:30%"/>
-<p>@Model.Desc</p>
+<div class="item-description">
+    <img class="item-description__picture" src="@Model.ImageURL" alt="Image"/>
+    <p class="item-description__text">@Model.Desc</p>
+</div>
+
 <form method="post">
     <button asp-for="name" type="submit" id="name" name="name" value="@Model.Name" class="btn btn-primary">Add to Cart</button>
 </form>
+</div>
