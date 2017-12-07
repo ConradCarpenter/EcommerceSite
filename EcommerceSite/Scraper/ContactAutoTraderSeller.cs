@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Hangfire;
 
 namespace EcommerceSite.Scraper
 {
@@ -17,7 +18,7 @@ namespace EcommerceSite.Scraper
         {
             _context = context;
         }
-
+        [AutomaticRetry(Attempts = 0)]
         public void contact(String listingId, String Email)
         {
             ILoggerFactory loggerFactory = new LoggerFactory().AddConsole().AddDebug();

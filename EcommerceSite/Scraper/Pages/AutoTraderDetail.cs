@@ -51,14 +51,14 @@ namespace EcommerceSite.Scraper.Pages
 
         public void setMessage(String Message)
         {
-            IWebElement input_box_message = driver.FindElement(By.ClassName("message"));
+            IWebElement input_box_message = driver.FindElement(By.Name("message"));
 
             input_box_message.SendKeys(Message);
         }
 
         public void SetFirstName(String FirstName)
         {
-            IWebElement input_box_first_name = driver.FindElement(By.ClassName("firstName"));
+            IWebElement input_box_first_name = driver.FindElement(By.Id("firstName"));
 
             input_box_first_name.SendKeys(FirstName);
 
@@ -67,7 +67,7 @@ namespace EcommerceSite.Scraper.Pages
         public void SetLastName(String LastName)
         {
            
-           IWebElement input_box_last_name = driver.FindElement(By.ClassName("lastName"));
+           IWebElement input_box_last_name = driver.FindElement(By.Id("lastName"));
 
             input_box_last_name.SendKeys(LastName);
 
@@ -75,7 +75,7 @@ namespace EcommerceSite.Scraper.Pages
 
         public void SetEmail(String Email)
         {
-            IWebElement input_box_email = driver.FindElement(By.ClassName("emailAddress"));
+            IWebElement input_box_email = driver.FindElement(By.Id("emailAddress"));
 
             input_box_email.SendKeys(Email);
 
