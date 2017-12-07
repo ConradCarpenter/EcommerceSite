@@ -28,6 +28,12 @@ namespace EcommerceSite.Controllers
 
             List<Item> dataItem = _context.Items.ToList();
             string cookies = Request.Cookies["cart"];
+
+            if (String.IsNullOrEmpty(cookies))
+            {
+                return View(new List<Item>());
+            }
+
             string[] items = cookies.Split('-');
             foreach (var item in items)
             {
@@ -52,6 +58,7 @@ namespace EcommerceSite.Controllers
         public async Task<IActionResult> Checkout()
         {
             List<Item> cartItems = new List<Item>();
+           
 
             List<Item> dataItem = _context.Items.ToList();
             string cookies = Request.Cookies["cart"];
@@ -78,14 +85,17 @@ namespace EcommerceSite.Controllers
 
             foreach (var item in cartItems)
             {
-                if(item.User != null)
+                if(item.UserID != null)
                 {
                     UserPurchased up = new UserPurchased();
                     up.User = await _userManager.GetUserAsync(User);
+                    up.UserID = up.User.Id;
                     up.Item = item;
-                    item.Buyers.Add(up);
+                    up.ItemNumber = item.ItemNumber;
+                    
 
-                   var si = _context.Items.FirstOrDefault(i => i.ItemNumber == item.ItemNumber);
+                    var si = _context.Items.FirstOrDefault(i => i.ItemNumber == item.ItemNumber);
+                    if (si.Buyers == null) si.Buyers = new List<UserPurchased>();
                     si.Buyers.Add(up);
                     await _context.SaveChangesAsync();
                 }

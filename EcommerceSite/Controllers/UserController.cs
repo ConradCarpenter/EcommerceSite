@@ -102,6 +102,17 @@ namespace EcommerceSite.Controllers
         {
             var CurrentUser = await _userManager.GetUserAsync(HttpContext.User);
             var items = _context.Items.Where(p => p.User == CurrentUser).ToList();
+            var up = new List<UserPurchased>();
+            try
+            {
+                up = _context.UserPurchased.Where(i => i.ItemNumber == items.First().ItemNumber).ToList();
+            }
+            catch 
+            {
+            }
+            
+            ViewBag.number = up.Count;
+
             return View(items);
         }
         
@@ -208,12 +219,13 @@ namespace EcommerceSite.Controllers
             var emails = new List<string>();
             try
             {
-                emails = _context.Items.Where(i => i.ItemNumber == id).SelectMany(i => i.Buyers).Select(b=> b.User.Email).ToList();
+                emails = _context.UserPurchased.Where(u => u.ItemNumber == id).Select(p => p.User.Email).ToList();
             }
-            catch (Exception)
+            catch
             {
-
             }
+            
+     
             
             
             return View(emails);

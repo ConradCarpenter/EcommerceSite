@@ -52,14 +52,7 @@ else
                         <img class="item-list__picture" src="@item.ImageURL" alt="Image"/>
                     </td>
                     <td>
-                        @if(item.Buyers == null)
-                        {
-                            <span>0</span>
-                        }
-                        else
-                        {
-                            @item.Buyers.Count
-                        }  
+                         @ViewBag.number
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "EditItem", new { id=item.ItemNumber }) |
