@@ -70,14 +70,6 @@ namespace EcommerceSite.Controllers
                     if (item == i.Name)
                     {
                         cartItems.Add(i);
-
-                        ContactAutoTraderSeller Contacter = new ContactAutoTraderSeller(_context);
-
-                        var tmpUser = await _userManager.GetUserAsync(User);
-                        var email = tmpUser.Email;
-
-                        BackgroundJob.Enqueue(() =>Contacter.contact(i.ForeignListingId,email));
-
                         break;
                     }
                 }
@@ -85,7 +77,7 @@ namespace EcommerceSite.Controllers
 
             foreach (var item in cartItems)
             {
-                if(item.UserID != null)
+                if (item.UserID != null)
                 {
                     UserPurchased up = new UserPurchased();
                     up.User = await _userManager.GetUserAsync(User);
@@ -98,6 +90,15 @@ namespace EcommerceSite.Controllers
                     if (si.Buyers == null) si.Buyers = new List<UserPurchased>();
                     si.Buyers.Add(up);
                     await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    ContactAutoTraderSeller Contacter = new ContactAutoTraderSeller(_context);
+
+                    var tmpUser = await _userManager.GetUserAsync(User);
+                    var email = tmpUser.Email;
+
+                    BackgroundJob.Enqueue(() =>Contacter.contact(item.ForeignListingId, email));
                 }
             }
 
